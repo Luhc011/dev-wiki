@@ -1,1 +1,9 @@
-<Solution />
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Solid/" />
+  <Folder Name="/src/Solid/DevWiki.Solid.Srp/">
+    <Project Path="src/Solid/DevWiki.Solid.Ocp/DevWiki.Solid.Ocp.csproj" />
+    <Project Path="src/Solid/DevWiki.Solid.Shared/DevWiki.Solid.Shared.csproj" />
+    <Project Path="src/Solid/DevWiki.Solid.Srp/DevWiki.Solid.Srp.csproj" />
+  </Folder>
+</Solution>
