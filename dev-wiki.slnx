@@ -1,6 +1,9 @@
 <Solution>
   <Folder Name="/src/" />
   <Folder Name="/src/Solid/" />
+  <Folder Name="/src/Solid/DevWiki.Solid.Isp/">
+    <Project Path="src/Solid/DevWiki.Solid.Isp/DevWiki.Solid.Isp.csproj" Id="fe0a8d6d-ec79-44a7-a5b4-3f9878026b46" />
+  </Folder>
   <Folder Name="/src/Solid/DevWiki.Solid.Lsp/">
     <Project Path="src/Solid/DevWiki.Solid.Lsp/DevWiki.Solid.Lsp.csproj" Id="7e7fc64b-5288-45c0-a45d-9e1b3fd78fbd" />
   </Folder>
