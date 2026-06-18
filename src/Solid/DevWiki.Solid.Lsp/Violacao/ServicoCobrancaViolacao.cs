@@ -5,7 +5,7 @@ namespace DevWiki.Solid.Lsp.Violacao;
 
 public class ServicoCobrancaViolacao
 {
-    public async Task<ResultadoPagamento> ProcessarCobrancaAsync(IProcessadorPagamento processador, SolicitacaoPagamento solicitacao)
+    public async Task<ResultadoPagamento> ProcessarCobrancaAsync(IProcessadorPagamentoViolacao processador, SolicitacaoPagamento solicitacao)
     {
         if (processador is ProcessadorTed && !EhHorarioBancario())
             throw new InvalidOperationException("ted n esta disponivel neste horario");
@@ -23,7 +23,7 @@ public class ServicoCobrancaViolacao
         return resultado;
     }
 
-    public async Task CancelarAsync(IProcessadorPagamento processador, string idTransacao)
+    public async Task CancelarAsync(IProcessadorPagamentoViolacao processador, string idTransacao)
     {
         try
         {

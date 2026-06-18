@@ -3,7 +3,7 @@ using DevWiki.Solid.Shared.Domain;
 
 namespace DevWiki.Solid.Lsp.Violacao;
 
-public class ProcessadorTed : IProcessadorPagamento
+public class ProcessadorTed : IProcessadorPagamentoViolacao
 {
     private readonly Func<DateTimeOffset> _relogio;
     private TimeOnly InicioJanela { get; init; } = new(6, 0);

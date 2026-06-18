@@ -3,7 +3,7 @@ using DevWiki.Solid.Shared.Domain;
 
 namespace DevWiki.Solid.Lsp.Violacao;
 
-public class ProcessadorBoleto : IProcessadorPagamento
+public class ProcessadorBoleto : IProcessadorPagamentoViolacao
 {
     public Task<ResultadoPagamento> ProcessarAsync(SolicitacaoPagamento solicitacao)
         => Task.FromResult(new ResultadoPagamento(null, StatusPagamento.AguardandoCompensacao, "aguardando pagamento"));

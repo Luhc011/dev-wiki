@@ -2,7 +2,7 @@
 
 namespace DevWiki.Solid.Lsp.Violacao.Interfaces;
 
-public interface IProcessadorPagamento
+public interface IProcessadorPagamentoViolacao
 {
     Task<ResultadoPagamento> ProcessarAsync(SolicitacaoPagamento solicitacao);
     Task<Comprovante> GerarComprovanteAsync(string idTransacao);
