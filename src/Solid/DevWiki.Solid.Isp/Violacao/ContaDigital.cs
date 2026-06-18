@@ -2,7 +2,7 @@
 
 namespace DevWiki.Solid.Isp.Violacao;
 
-public class ContaDigital(decimal saldoInicial = 0m) : IContaBancaria
+public class ContaDigital(decimal saldoInicial = 0m) : IContaBancariaViolacao
 {
     private decimal _saldo = saldoInicial;
 

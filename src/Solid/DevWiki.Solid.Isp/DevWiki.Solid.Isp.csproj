@@ -10,4 +10,8 @@
     <ProjectReference Include="..\DevWiki.Solid.Shared\DevWiki.Solid.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Correto\Interfaces\" />
+  </ItemGroup>
+
 </Project>

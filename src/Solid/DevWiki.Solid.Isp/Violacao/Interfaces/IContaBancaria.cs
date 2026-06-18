@@ -1,6 +1,6 @@
 ﻿namespace DevWiki.Solid.Isp.Violacao.Interfaces;
 
-public interface IContaBancaria
+public interface IContaBancariaViolacao
 {
     Task<decimal> ConsultarSaldoAsync();
     Task DepositarAsync(decimal valor);
