@@ -1,5 +1,18 @@
 <Solution>
   <Folder Name="/src/" />
+  <Folder Name="/src/CleanArch/" />
+  <Folder Name="/src/CleanArch/DevWiki.CleanArch..Domain/">
+    <Project Path="src/CleanArch/DevWiki.CleanArch.Domain/DevWiki.CleanArch.Domain.csproj" Id="24fe224a-07db-4929-a09f-8ddfcee9f167" />
+  </Folder>
+  <Folder Name="/src/CleanArch/DevWiki.CleanArch.Api/">
+    <Project Path="src/CleanArch/DevWiki.CleanArch.Api/DevWiki.CleanArch.Api.csproj" Id="ac868e33-5fd8-43ef-859d-bc8bf73ea259" />
+  </Folder>
+  <Folder Name="/src/CleanArch/DevWiki.CleanArch.Application/">
+    <Project Path="src/CleanArch/DevWiki.CleanArch.Application/DevWiki.CleanArch.Application.csproj" Id="23af1dac-1b6c-4287-8dc3-488623935c81" />
+  </Folder>
+  <Folder Name="/src/CleanArch/DevWiki.CleanArch.Infrasctructure/">
+    <Project Path="src/CleanArch/DevWiki.CleanArch.Infrasctructure/DevWiki.CleanArch.Infrasctructure.csproj" Id="d2863aca-40e2-4b06-b794-9a8772e60df5" />
+  </Folder>
   <Folder Name="/src/Solid/" />
   <Folder Name="/src/Solid/DevWiki.Solid.Dip/">
     <Project Path="src/Solid/DevWiki.Solid.Dip/DevWiki.Solid.Dip.csproj" Id="2aafea57-0eca-428d-b0a2-905bf74fa0ab" />
