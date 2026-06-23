@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevWiki.CleanArch.Application\DevWiki.CleanArch.Application.csproj" />
+    <ProjectReference Include="..\DevWiki.CleanArch.Infrasctructure\DevWiki.CleanArch.Infrasctructure.csproj" />
+  </ItemGroup>
+
 </Project>
