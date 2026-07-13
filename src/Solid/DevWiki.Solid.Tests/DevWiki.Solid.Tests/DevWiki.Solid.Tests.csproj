@@ -21,8 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="1- SingleResponsibility"/>
-		<Folder Include="2- OpenClosed\" />
+		<Folder Include="1- SingleResponsibility" />
 		<Folder Include="3- LiskovSubstitution\" />
 		<Folder Include="4- InterfaceSegregation\" />
 		<Folder Include="5- DependencyInversion\" />
