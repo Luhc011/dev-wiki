@@ -32,4 +32,7 @@
   <Folder Name="/src/Solid/DevWiki.Solid.Srp/">
     <Project Path="src/Solid/DevWiki.Solid.Srp/DevWiki.Solid.Srp.csproj" />
   </Folder>
+  <Folder Name="/src/Solid/DevWiki.Solid.Tests/">
+    <Project Path="src/Solid/DevWiki.Solid.Tests/DevWiki.Solid.Tests/DevWiki.Solid.Tests.csproj" Id="f4e74d1a-7386-450d-9782-b3b6c58239d2" />
+  </Folder>
 </Solution>

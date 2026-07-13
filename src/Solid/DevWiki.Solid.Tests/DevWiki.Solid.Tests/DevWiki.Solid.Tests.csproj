@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.4" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+		<PackageReference Include="FluentAssertions" Version="6.12.1" />
+		<PackageReference Include="Moq" Version="4.20.72" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Xunit" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="1- SingleResponsibility"/>
+		<Folder Include="2- OpenClosed\" />
+		<Folder Include="3- LiskovSubstitution\" />
+		<Folder Include="4- InterfaceSegregation\" />
+		<Folder Include="5- DependencyInversion\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\DevWiki.Solid.Srp\DevWiki.Solid.Srp.csproj" />
+	  <ProjectReference Include="..\..\DevWiki.Solid.Ocp\DevWiki.Solid.Ocp.csproj" />
+	  <ProjectReference Include="..\..\DevWiki.Solid.Lsp\DevWiki.Solid.Lsp.csproj" />
+	  <ProjectReference Include="..\..\DevWiki.Solid.Isp\DevWiki.Solid.Isp.csproj" />
+	  <ProjectReference Include="..\..\DevWiki.Solid.Dip\DevWiki.Solid.Dip.csproj" />
+	</ItemGroup>
+
+</Project>
