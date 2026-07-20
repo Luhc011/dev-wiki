@@ -19,7 +19,9 @@
   </Folder>
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.EventSourcing/" />
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.Messaging/" />
-  <Folder Name="/src/EventDriven/DevWiki.EventDriven.Shared/" />
+  <Folder Name="/src/EventDriven/DevWiki.EventDriven.Shared/">
+    <Project Path="src/EventDriven/DevWiki.EventDriven.Shared/DevWiki.EventDriven.Shared.csproj" Id="e48acb4f-92b2-44b4-b034-5b5b18730bb4" />
+  </Folder>
   <Folder Name="/src/Solid/" />
   <Folder Name="/src/Solid/DevWiki.Solid.Dip/">
     <Project Path="src/Solid/DevWiki.Solid.Dip/DevWiki.Solid.Dip.csproj" Id="2aafea57-0eca-428d-b0a2-905bf74fa0ab" />
