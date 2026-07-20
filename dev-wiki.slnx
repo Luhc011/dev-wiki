@@ -17,7 +17,9 @@
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.EDA/">
     <Project Path="src/EventDriven/DevWiki.EventDriven.EDA/DevWiki.EventDriven.EDA.csproj" Id="6d2995d5-dd49-4049-afcf-09dcf1effdbd" />
   </Folder>
-  <Folder Name="/src/EventDriven/DevWiki.EventDriven.EventSourcing/" />
+  <Folder Name="/src/EventDriven/DevWiki.EventDriven.EventSourcing/">
+    <Project Path="src/EventDriven/DevWiki.EventDriven.EventSourcing/DevWiki.EventDriven.EventSourcing.csproj" Id="f0937fcc-787f-4232-9aed-c83e0426197b" />
+  </Folder>
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.Messaging/" />
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.Shared/">
     <Project Path="src/EventDriven/DevWiki.EventDriven.Shared/DevWiki.EventDriven.Shared.csproj" Id="e48acb4f-92b2-44b4-b034-5b5b18730bb4" />
