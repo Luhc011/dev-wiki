@@ -180,3 +180,159 @@ public class AutorizacaoPagamentoTests
                      "alto nível não conhece nem controla a geração do ID");
     }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Flexibilidade do DIP — substituição de implementação sem modificar o negócio
+// 
+public class FlexibilidadeDipTests
+{
+    [Fact(DisplayName = "ServicoAutorizacaoPagamento: pode substituir qualquer dependência sem alterar a classe")]
+    public async Task ServicoAutorizacaoPagamento_PodeSubstituirQualquerDependencia_SemAlterarAClasse()
+    {
+        /*
+         * DIP + LSP em conjunto: qualquer implementação de IAnalisadorAntifraude é substituível.
+         *
+         * Criamos 3 instâncias de ServicoAutorizacaoPagamento com diferentes comportamentos
+         * de antifraude — a classe não foi alterada, apenas a implementação injetada.
+         *
+         * Em produção: trocar Serpro por ClearSale = 1 linha no container de DI.
+         */
+
+        // Arrange — Gateway compartilhado entre os 3 serviços
+        var gatewayMock = new Mock<IGatewayPagamento>();
+        var resultadoAprovado = new ResultadoPagamento("TXN-001", StatusPagamento.Processado, "OK");
+        gatewayMock
+            .Setup(g => g.ProcessarAsync(It.IsAny<SolicitacaoPagamento>()))
+            .ReturnsAsync(resultadoAprovado);
+
+        var repositorio = new Mock<IRepositorioPagamento>();
+        var notificador = new Mock<INotificadorPagamento>();
+
+        // Implementação 1: antifraude que SEMPRE aprova
+        var antifraudeAprovador = new Mock<IAnalisadorAntifraude>();
+        antifraudeAprovador
+            .Setup(a => a.AnalisarRiscoAsync(It.IsAny<string>(), It.IsAny<decimal>()))
+            .ReturnsAsync(true);
+
+        // Implementação 2: antifraude que SEMPRE reprova
+        var antifraudeReprovador = new Mock<IAnalisadorAntifraude>();
+        antifraudeReprovador
+            .Setup(a => a.AnalisarRiscoAsync(It.IsAny<string>(), It.IsAny<decimal>()))
+            .ReturnsAsync(false);
+
+        // Implementação 3: antifraude condicional — reprova acima de R$ 1.000
+        var antifraudeCondicional = new Mock<IAnalisadorAntifraude>();
+        antifraudeCondicional
+            .Setup(a => a.AnalisarRiscoAsync(It.IsAny<string>(), It.Is<decimal>(v => v <= 1_000m)))
+            .ReturnsAsync(true);
+        antifraudeCondicional
+            .Setup(a => a.AnalisarRiscoAsync(It.IsAny<string>(), It.Is<decimal>(v => v > 1_000m)))
+            .ReturnsAsync(false);
+
+        var solicitacaoBaixa = new SolicitacaoPagamento("SOL-B", 500m, "Valor baixo", "341");
+        var solicitacaoAlta = new SolicitacaoPagamento("SOL-A", 5_000m, "Valor alto", "341");
+
+        // ServicoAutorizacaoPagamento não muda — apenas a implementação injetada varia
+        var servicoAprovador = new ServicoAutorizacaoPagamento(antifraudeAprovador.Object, gatewayMock.Object, repositorio.Object, notificador.Object);
+        var servicoReprovador = new ServicoAutorizacaoPagamento(antifraudeReprovador.Object, gatewayMock.Object, repositorio.Object, notificador.Object);
+        var servicoCondicional = new ServicoAutorizacaoPagamento(antifraudeCondicional.Object, gatewayMock.Object, repositorio.Object, notificador.Object);
+
+        // Act
+        var resultadoSempreAprova = await servicoAprovador.AutorizarAsync(solicitacaoAlta);
+        var resultadoSempreReprova = await servicoReprovador.AutorizarAsync(solicitacaoBaixa);
+        var resultadoBaixoCondicional = await servicoCondicional.AutorizarAsync(solicitacaoBaixa);
+        var resultadoAltoCondicional = await servicoCondicional.AutorizarAsync(solicitacaoAlta);
+
+        // Assert — mesma classe, comportamentos diferentes via injeção
+        resultadoSempreAprova.Status.Should().Be(StatusPagamento.Processado,
+            because: "antifraudeAprovador sempre aprova — mesmo R$5.000");
+        resultadoSempreReprova.Status.Should().Be(StatusPagamento.Cancelado,
+            because: "antifraudeReprovador sempre rejeita — mesmo R$500");
+        resultadoBaixoCondicional.Status.Should().Be(StatusPagamento.Processado,
+            because: "R$500 ≤ R$1.000 — antifraudeCondicional aprova");
+        resultadoAltoCondicional.Status.Should().Be(StatusPagamento.Cancelado,
+            because: "R$5.000 > R$1.000 — antifraudeCondicional rejeita");
+    }
+
+    [Fact(DisplayName = "ConfiguracaoDi: deve criar ServicoAutorizacaoPagamento com todas as dependências resolvidas")]
+    public void ConfiguracaoDi_DeveCriarServicoAutorizacaoComTodasDependencias()
+    {
+        /*
+         * O container de DI conecta abstrações com implementações em runtime.
+         * ServicoAutorizacaoPagamento não sabe qual implementação recebeu —
+         * nem precisa saber. DIP na prática.
+         */
+
+        // Arrange + Act
+        var provider = ConfiguracaoDi.CriarContainer();
+        var sut = provider.GetService(typeof(ServicoAutorizacaoPagamento))
+            as ServicoAutorizacaoPagamento;
+
+        // Assert
+        sut.Should().NotBeNull(
+            because: "container de DI deve resolver ServicoAutorizacaoPagamento " +
+                     "com todas as 4 abstrações registradas");
+        sut.Should().BeOfType<ServicoAutorizacaoPagamento>();
+    }
+
+    [Fact(DisplayName = "ConfiguracaoDi: deve resolver cada abstração para a implementação correta")]
+    public void ConfiguracaoDi_DeveResolverCadaAbstracaoParaImplementacaoCorreta()
+    {
+        // Arrange
+        var provider = ConfiguracaoDi.CriarContainer();
+
+        // Act + Assert — cada abstração resolve para uma implementação concreta não-nula
+        var antifraude = provider.GetService(typeof(IAnalisadorAntifraude));
+        var gateway = provider.GetService(typeof(IGatewayPagamento));
+        var repositorio = provider.GetService(typeof(IRepositorioPagamento));
+        var notificador = provider.GetService(typeof(INotificadorPagamento));
+
+        antifraude.Should().NotBeNull(because: "IAnalisadorAntifraude deve estar registrado");
+        gateway.Should().NotBeNull(because: "IGatewayPagamento deve estar registrado");
+        repositorio.Should().NotBeNull(because: "IRepositorioPagamento deve estar registrado");
+        notificador.Should().NotBeNull(because: "INotificadorPagamento deve estar registrado");
+    }
+
+    [Fact(DisplayName = "DIP: contraste entre violação e correto em termos de testabilidade")]
+    public async Task DiferencaEntreViolacaoECorreta_EmTernosDeTestabilidade()
+    {
+        /*
+         * VIOLAÇÃO — impossível testar com a classe assim (código comentado pois exige infra real):
+         *
+         *   var violacao = new Violation.ServicoAutorizacaoPagamento();
+         *   await violacao.AutorizarAsync(solicitacao);
+         *   // falha: sem endpoint Serpro ativo, sem Oracle, sem SMTP
+         *
+         * CORRETO — 4 mocks, zero infraestrutura, < 10ms:
+         */
+
+        // Arrange — nenhum serviço externo necessário
+        var antifraude = new Mock<IAnalisadorAntifraude>();
+        var gateway = new Mock<IGatewayPagamento>();
+        var repositorio = new Mock<IRepositorioPagamento>();
+        var notificador = new Mock<INotificadorPagamento>();
+
+        var solicitacao = new SolicitacaoPagamento("SOL-CONTRASTE", 750m, "Teste de contraste", "001");
+        var resultadoEsperado = new ResultadoPagamento(
+            "TXN-CONTRASTE-001", StatusPagamento.Processado, "OK");
+
+        antifraude
+            .Setup(a => a.AnalisarRiscoAsync(It.IsAny<string>(), It.IsAny<decimal>()))
+            .ReturnsAsync(true);
+        gateway
+            .Setup(g => g.ProcessarAsync(It.IsAny<SolicitacaoPagamento>()))
+            .ReturnsAsync(resultadoEsperado);
+
+        var servico = new ServicoAutorizacaoPagamento(
+            antifraude.Object, gateway.Object, repositorio.Object, notificador.Object);
+
+        // Act — roda sem rede, sem banco, sem SMTP
+        var resultado = await servico.AutorizarAsync(solicitacao);
+
+        // Assert
+        resultado.Status.Should().Be(StatusPagamento.Processado,
+            because: "DIP correto: ServicoAutorizacaoPagamento testável com mocks em < 10ms — " +
+                     "sem Serpro, sem Oracle, sem SMTP");
+        resultado.IdTransacao.Should().Be("TXN-CONTRASTE-001");
+    }
+}
