@@ -22,7 +22,6 @@
 
 	<ItemGroup>
 		<Folder Include="1- SingleResponsibility" />
-		<Folder Include="5- DependencyInversion\" />
 	</ItemGroup>
 
 	<ItemGroup>
