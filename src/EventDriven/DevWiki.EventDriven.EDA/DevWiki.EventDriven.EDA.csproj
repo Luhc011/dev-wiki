@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Services\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Handlers\" />
     <Folder Include="EventBus\" />
   </ItemGroup>
