@@ -40,3 +40,32 @@ Todos os exemplos usam domínio bancário (pagamentos, cobranças, notificaçõe
 | [docs/clean-arch/03-infrastructure.md](docs/clean-arch/03-infrastructure.md) | Ports & Adapters, repositório em memória, testabilidade |
 | [docs/clean-arch/04-presentation.md](docs/clean-arch/04-presentation.md) | Minimal API, DTOs, mapeamento Result → HTTP, Program.cs |
 | [docs/clean-arch/05-testes-arquitetura.md](docs/clean-arch/05-testes-arquitetura.md) | NetArchTest.Rules, pirâmide de testes, testes de domínio e aplicação |
+
+
+//A FAZER
+### Cobertura de testes — Clean Architecture
+
+## Microservices Patterns
+### Documentação Microservices
+### Projetos Microservices
+### Cobertura de testes — Microservices
+
+## Event-Driven & Messaging
+### Documentação Event-Driven
+### Projetos Event-Driven
+### Cobertura de testes — Event-Driven
+
+## Infraestrutura & Cloud
+### Documentação Infraestrutura
+### Arquivos de Infraestrutura
+### Projetos Infra (.NET)
+### Cobertura de testes — Infraestrutura
+
+## POO Fundamentals + GoF Design Patterns
+### Documentação POO + GoF
+### Projetos POO + GoF
+### Cobertura de testes — POO + GoF Patterns
+
+
+
+
