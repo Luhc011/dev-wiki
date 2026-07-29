@@ -10,12 +10,4 @@
     <ProjectReference Include="..\DevWiki.EventDriven.Shared\DevWiki.EventDriven.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EventStore\" />
-    <Folder Include="Projections\" />
-    <Folder Include="Snapshots\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Aggregates\" />
-  </ItemGroup>
-
 </Project>
