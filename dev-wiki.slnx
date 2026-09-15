@@ -30,6 +30,9 @@
   <Folder Name="/src/Microservices/DevWiki.Microservices.Bff/">
     <Project Path="src/Microservices/DevWiki.Microservices.Bff/DevWiki.Microservices.Bff.csproj" Id="07244147-2d34-4798-b66f-d106a29ebc70" />
   </Folder>
+  <Folder Name="/src/Microservices/DevWiki.Microservices.Saga/">
+    <Project Path="src/Microservices/DevWiki.Microservices.Saga/DevWiki.Microservices.Saga.csproj" Id="cf6218fd-ad2d-42f5-8566-7fba622fd6bf" />
+  </Folder>
   <Folder Name="/src/Microservices/DevWiki.Microservices.Shared/">
     <Project Path="src/Microservices/DevWiki.Microservices.Shared/DevWiki.Microservices.Shared.csproj" Id="4558715e-19f1-4f29-8ccd-1802e4101f82" />
   </Folder>
