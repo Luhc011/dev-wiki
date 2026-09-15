@@ -26,6 +26,13 @@
   <Folder Name="/src/EventDriven/DevWiki.EventDriven.Shared/">
     <Project Path="src/EventDriven/DevWiki.EventDriven.Shared/DevWiki.EventDriven.Shared.csproj" Id="e48acb4f-92b2-44b4-b034-5b5b18730bb4" />
   </Folder>
+  <Folder Name="/src/Microservices/" />
+  <Folder Name="/src/Microservices/DevWiki.Microservices.Bff/">
+    <Project Path="src/Microservices/DevWiki.Microservices.Bff/DevWiki.Microservices.Bff.csproj" Id="07244147-2d34-4798-b66f-d106a29ebc70" />
+  </Folder>
+  <Folder Name="/src/Microservices/DevWiki.Microservices.Shared/">
+    <Project Path="src/Microservices/DevWiki.Microservices.Shared/DevWiki.Microservices.Shared.csproj" Id="4558715e-19f1-4f29-8ccd-1802e4101f82" />
+  </Folder>
   <Folder Name="/src/Solid/" />
   <Folder Name="/src/Solid/DevWiki.Solid.Dip/">
     <Project Path="src/Solid/DevWiki.Solid.Dip/DevWiki.Solid.Dip.csproj" Id="2aafea57-0eca-428d-b0a2-905bf74fa0ab" />
