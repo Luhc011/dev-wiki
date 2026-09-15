@@ -33,6 +33,9 @@
   <Folder Name="/src/Microservices/DevWiki.Microservices.CircuitBreaker/">
     <Project Path="src/Microservices/DevWiki.Microservices.CircuitBreaker/DevWiki.Microservices.CircuitBreaker.csproj" Id="c737c87a-b443-42e6-9acf-4ae5c917c4b5" />
   </Folder>
+  <Folder Name="/src/Microservices/DevWiki.Microservices.Outbox/">
+    <Project Path="src/Microservices/DevWiki.Microservices.Outbox/DevWiki.Microservices.Outbox.csproj" Id="a14deba1-9210-4b29-8c71-e11db62b3b98" />
+  </Folder>
   <Folder Name="/src/Microservices/DevWiki.Microservices.Saga/">
     <Project Path="src/Microservices/DevWiki.Microservices.Saga/DevWiki.Microservices.Saga.csproj" Id="cf6218fd-ad2d-42f5-8566-7fba622fd6bf" />
   </Folder>
