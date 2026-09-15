@@ -41,20 +41,61 @@ Todos os exemplos usam domínio bancário (pagamentos, cobranças, notificaçõe
 | [docs/clean-arch/04-presentation.md](docs/clean-arch/04-presentation.md) | Minimal API, DTOs, mapeamento Result → HTTP, Program.cs |
 | [docs/clean-arch/05-testes-arquitetura.md](docs/clean-arch/05-testes-arquitetura.md) | NetArchTest.Rules, pirâmide de testes, testes de domínio e aplicação |
 
-
-//A FAZER
-### Cobertura de testes — Clean Architecture
-
 ## Microservices Patterns
+
+| Módulo | Documentação | Código | Status |
+|--------|-------------|--------|--------|
+| Microservices Patterns | [docs/microservices/README.md](docs/microservices/README.md) | src/Microservices/ | ✅ |
+
 ### Documentação Microservices
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| [docs/microservices/README.md](docs/microservices/README.md) | CAP Theorem, mapa de padrões, trade-offs |
+| [docs/microservices/01-saga.md](docs/microservices/01-saga.md) | Saga Choreography vs Orchestration, compensação, fluxos ASCII |
+| [docs/microservices/02-outbox.md](docs/microservices/02-outbox.md) | Dual Write Problem, Outbox Pattern, Inbox Pattern, at-least-once |
+| [docs/microservices/03-circuit-breaker.md](docs/microservices/03-circuit-breaker.md) | 3 estados (Closed/Open/Half-Open), Polly v8 ResiliencePipelineBuilder |
+| [docs/microservices/04-bff.md](docs/microservices/04-bff.md) | BFF vs API Gateway, Mobile/Web/Parceiro, exemplos de código |
+
 ### Projetos Microservices
-### Cobertura de testes — Microservices
+
+| Projeto | Papel |
+|---------|-------|
+| DevWiki.Microservices.Shared | SharedKernel: Result\<T\>, Evento, enums de domínio |
+| DevWiki.Microservices.Saga | Saga Choreography + Orchestration com compensação |
+| DevWiki.Microservices.Outbox | Outbox Pattern + Inbox Pattern + BackgroundService |
+| DevWiki.Microservices.CircuitBreaker | Circuit Breaker com Polly v8 (Fallback → Retry → CB) |
+| DevWiki.Microservices.Bff | BFF Mobile / Web / Parceiro |
+| DevWiki.Microservices.Tests | Testes de todos os padrões |
 
 ## Event-Driven & Messaging
-### Documentação Event-Driven
-### Projetos Event-Driven
-### Cobertura de testes — Event-Driven
 
+| Módulo | Documentação | Código | Status |
+|--------|-------------|--------|--------|
+| Event-Driven & Messaging | [docs/event-driven/README.md](docs/event-driven/README.md) | src/EventDriven/ | ✅ |
+
+### Documentação Event-Driven
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| [docs/event-driven/README.md](docs/event-driven/README.md) | EDA vs Event Sourcing, Kafka vs RabbitMQ, mapa do módulo |
+| [docs/event-driven/01-event-driven-vs-sourcing.md](docs/event-driven/01-event-driven-vs-sourcing.md) | EDA fanout, Event Sourcing vs DB tradicional, comparativo |
+| [docs/event-driven/02-event-sourcing.md](docs/event-driven/02-event-sourcing.md) | 5 pilares, OCC, snapshots, projections, replay |
+| [docs/event-driven/03-pub-sub.md](docs/event-driven/03-pub-sub.md) | Observer vs Pub/Sub, variações fanout/topic/content-based |
+| [docs/event-driven/04-kafka.md](docs/event-driven/04-kafka.md) | Arquitetura Kafka, partitions, consumer groups, at-least-once |
+| [docs/event-driven/05-rabbitmq.md](docs/event-driven/05-rabbitmq.md) | Exchange types, wildcards Topic, DLQ, ACK/NACK |
+
+### Projetos Event-Driven
+
+| Projeto | Papel |
+|---------|-------|
+| DevWiki.EventDriven.Shared | DomainEvent, AggregateEvent, Result\<T\>, StatusCobranca |
+| DevWiki.EventDriven.EDA | Pub/Sub em memória: IEventBus, EventBusMemoria, handlers, extensões DI |
+| DevWiki.EventDriven.EventSourcing | CobrancaAggregate, EventStore, Snapshots, Projections |
+| DevWiki.EventDriven.Messaging | KafkaTopicSimulado, KafkaConsumerGroupSimulado, ExchangeRabbitMQ, FilaRabbitMQ |
+| DevWiki.EventDriven.Tests | Testes de todos os padrões |
+
+//A FAZER
 ## Infraestrutura & Cloud
 ### Documentação Infraestrutura
 ### Arquivos de Infraestrutura
